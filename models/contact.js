@@ -8,14 +8,23 @@ const contactSchema = Schema({
   },
   email: {
     type: String,
+    required: true,
+    unique: true,
   },
   phone: {
     type: String,
+    required: true,
+    unique: true,
   },
   favorite: {
     type: Boolean,
     default: false,
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'user',
+    required: true
+  }
 }, { versionKey: false, timestamps: true })
 
 const joiSchema = Joi.object({
