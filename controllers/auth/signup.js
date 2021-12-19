@@ -1,4 +1,5 @@
 const { Conflict } = require('http-errors')
+
 const { nanoid } = require('nanoid')
 
 const { sendEmail } = require('../../helpers')
@@ -11,8 +12,10 @@ const signup = async(req, res) => {
   if (user) {
     throw new Conflict(`User with ${email} already exist`)
   }
+
   const verificationToken = nanoid()
   const newUser = new User({ name, email, verificationToken })
+
   newUser.setPassword(password)
   await newUser.save()
   const mail = {
@@ -30,7 +33,9 @@ const signup = async(req, res) => {
       user: {
         email,
         name,
+
         verificationToken
+
       }
     }
   })

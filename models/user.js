@@ -26,6 +26,7 @@ const userSchema = Schema({
     type: String,
     default: null
   },
+
   verify: {
     type: Boolean,
     default: false,
@@ -34,6 +35,7 @@ const userSchema = Schema({
     type: String,
     required: [true, 'Verify token is required'],
   },
+
 }, { versionKey: false, timestamps: true })
 
 userSchema.methods.setPassword = function(password) {
